@@ -1,12 +1,12 @@
 .recipes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 .recipes .card {
   background-color: white;
   padding: 10px;
   color: black;
-  margin-right: 10px;
   border-radius: 8px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
   transform: all 1s ease;

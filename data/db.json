@@ -36,6 +36,52 @@
       ],
       "method": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse minima ex rem quis similique eum ratione quaerat, voluptas molestias ut repudiandae delectus voluptates. Eius esse at tenetur ab accusamus excepturi?",
       "cookingTime": "35 minutes"
+    },
+    {
+      "title": "Birayani",
+      "ingredients": [
+        "rice"
+      ],
+      "method": "Cook",
+      "cookingTime": "34",
+      "id": "JV0nDWN"
+    },
+    {
+      "title": "Aroma Biryani",
+      "ingredients": [
+        "Rice",
+        "Chicken",
+        "Aroma",
+        "Masala"
+      ],
+      "method": "Biryani rice are flavored with spices and are full of aroma. This is attained by boiling rice with whole spices and salt in large pot with plenty of water. Best way to do this is boil water with salt and whole spices like cumin, cardamoms, pepper, bay leaf etc",
+      "cookingTime": "1.5 hours",
+      "id": "gQgxGzw"
+    },
+    {
+      "title": "Egg Toast",
+      "ingredients": [
+        "Eggs",
+        "Bread",
+        "Oil",
+        "Salt",
+        "Masala"
+      ],
+      "method": "Slice the bread into two piece",
+      "cookingTime": "15 mins",
+      "id": "tF8Xf3X"
+    },
+    {
+      "title": "Burger",
+      "ingredients": [
+        "bread",
+        "Oil",
+        "Vegetables",
+        "Cream"
+      ],
+      "method": "Mix everything up",
+      "cookingTime": "30 mins",
+      "id": "RFIKr4O"
     }
   ]
 }

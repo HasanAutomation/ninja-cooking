@@ -1,13 +1,17 @@
 .create {
   max-width: 1200px;
-  margin: 30px auto;
+  margin: 0px auto;
 }
 .create .page-title {
   color: #555;
+  margin: 10px auto;
 }
 .create form {
   max-width: 50%;
   margin: auto;
+}
+.create form label {
+  display: block;
 }
 .create form input {
   border: none;
@@ -21,6 +25,14 @@
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
+  margin: 10px 0;
   background-color: #58249c;
+}
+.ingredient {
+  background-color: #fff;
+  padding: 7px 10px;
+  margin: 0 5px;
+  border-radius: 100px;
+  font-size: 14px;
+  cursor: pointer;
 }
