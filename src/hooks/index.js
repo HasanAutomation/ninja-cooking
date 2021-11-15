@@ -11,6 +11,7 @@ export const useFetch = url => {
       try {
         setLoading(true);
         const res = await fetch(url, { signal: controller.signal });
+        if (!res.ok) throw new Error(res.statusText);
         const data = await res.json();
         setData(data);
         setLoading(false);
