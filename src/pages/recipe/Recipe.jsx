@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../../hooks';
+import './Recipe.css';
 
 export default function Recipe() {
   const { id } = useParams();
@@ -12,9 +13,16 @@ export default function Recipe() {
       {loading && <p className='loading'>Loading...</p>}
       {error && <p className='error'>{error}</p>}
       {data && (
-        <div className='card'>
-          <h3>{data.title}</h3>
-        </div>
+        <>
+          <h2 className='page-title'>{data.title}</h2>
+          <p>Takes {data.cookingTime} to cook</p>
+          <ul>
+            {data.ingredients.map(ing => (
+              <li key={ing}>{ing}</li>
+            ))}
+          </ul>
+          <p>{data.method}</p>
+        </>
       )}
     </div>
   );
