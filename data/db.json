@@ -82,6 +82,25 @@
       "method": "Mix everything up",
       "cookingTime": "30 mins",
       "id": "RFIKr4O"
+    },
+    {
+      "title": "Birayan",
+      "ingredients": [
+        "Rice",
+        "Meat"
+      ],
+      "method": "Coo",
+      "cookingTime": "45 mins",
+      "id": "YwUomUW"
+    },
+    {
+      "title": "Burger",
+      "ingredients": [
+        "bread"
+      ],
+      "method": "Warm up the bread",
+      "cookingTime": "34 mins",
+      "id": "srcTYyd"
     }
   ]
 }

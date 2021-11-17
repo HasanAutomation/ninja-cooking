@@ -1,6 +1,7 @@
 .navbar {
   padding: 10px;
   background-color: #58249c;
+  color: white;
 }
 .navbar nav {
   display: flex;

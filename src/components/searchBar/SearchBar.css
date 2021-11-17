@@ -1,0 +1,15 @@
+.searchBar {
+  margin-right: 20px;
+}
+.searchBar form {
+  display: flex;
+  align-items: center;
+}
+.searchBar form input {
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+.searchBar form label {
+  margin-right: 10px;
+}
