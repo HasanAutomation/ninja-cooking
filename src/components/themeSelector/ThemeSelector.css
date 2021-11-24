@@ -3,7 +3,13 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 20px;
+  /* max-width: 1200px; */
+}
+.theme-selector .toggle-mode {
+  margin-right: auto;
+}
+.theme-selector .toggle-mode img {
+  cursor: pointer;
 }
 .theme-selector .theme-buttons {
   display: flex;

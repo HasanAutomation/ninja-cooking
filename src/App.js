@@ -7,11 +7,12 @@ import Search from './pages/search/Search';
 import Navbar from './components/navbar/Navbar';
 import './App.css';
 import ThemeSelector from './components/themeSelector/ThemeSelector';
+import { useTheme } from './contexts/ThemeContext';
 
 function App() {
-  console.log('UPDATING APP...');
+  const { mode } = useTheme();
   return (
-    <div className='App'>
+    <div className={`App ${mode}`}>
       <BrowserRouter>
         <Navbar />
         <ThemeSelector />

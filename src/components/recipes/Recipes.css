@@ -41,3 +41,13 @@
   border-radius: 5px;
   text-align: center;
 }
+
+/* dark Mode */
+.recipes .card.dark {
+  background-color: #555;
+}
+.recipes .card.dark p,
+.recipes .card.dark h3,
+.recipes .card.dark div {
+  color: #e4e4e4;
+}
