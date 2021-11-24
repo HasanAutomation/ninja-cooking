@@ -5,7 +5,7 @@ import './Recipes.css';
 export default function Recipes({ recipes }) {
   return (
     <div className='recipes'>
-      {recipes.length === 0 && <p className='page-title'>No Recipes found</p>}
+      {recipes?.length === 0 && <p className='page-title'>No Recipes found</p>}
       {recipes?.map(recipe => (
         <div key={recipe.id} className='card'>
           <h3>{recipe.title}</h3>
