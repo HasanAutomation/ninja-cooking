@@ -31,7 +31,6 @@ export function ThemeContextProvider({ children }) {
     dispatch({ type: CHANGE_COLOR, payload: color });
   }
   function changeMode(mode) {
-    console.log('MODE==', mode);
     dispatch({ type: CHANGE_MODE, payload: mode });
   }
 
