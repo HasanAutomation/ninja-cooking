@@ -5,14 +5,14 @@ import Trashcan from '../../assets/delete.svg';
 import './Recipes.css';
 import { projectFirestore } from '../../firebase/config';
 
-export default function Recipes({ recipes, onDeleteRecipe }) {
+export default function Recipes({ recipes }) {
   const { mode } = useTheme();
 
   const handleDelete = async id => {
     try {
       if (window.confirm('Are you sure?')) {
         await projectFirestore.collection('recipes').doc(id).delete();
-        onDeleteRecipe(id);
+        // onDeleteRecipe(id);
       }
     } catch (err) {
       console.log(err);
