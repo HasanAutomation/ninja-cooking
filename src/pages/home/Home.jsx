@@ -9,6 +9,10 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const deleteRecipe = id => {
+    setData(prev => prev.filter(recipe => recipe.id !== id));
+  };
+
   const { mode } = useTheme();
 
   useEffect(() => {
@@ -38,7 +42,7 @@ export default function Home() {
     <div className={`home ${mode}`}>
       {error && <p className='error'>{error}</p>}
       {loading && <p className='loading'>Loading...</p>}
-      <Recipes recipes={data} />
+      <Recipes recipes={data} onDeleteRecipe={deleteRecipe} />
     </div>
   );
 }

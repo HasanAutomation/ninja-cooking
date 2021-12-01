@@ -5,3 +5,6 @@
 .home.dark .loading {
   color: #e4e4e4;
 }
+.home.dark .error {
+  color: white;
+}
