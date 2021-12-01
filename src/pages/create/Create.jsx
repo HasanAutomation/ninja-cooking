@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
+import { projectFirestore } from '../../firebase/config';
 import './Create.css';
 
 export default function Create() {
@@ -11,39 +13,31 @@ export default function Create() {
   const ingredientRef = useRef(null);
   const [isPending, setIsPending] = useState(false);
 
+  const { mode } = useTheme();
+
   const navigate = useNavigate();
 
   async function postIngredient() {
+    setIsPending(true);
+    const body = {
+      title,
+      ingredients,
+      method,
+      cookingTime: cookingTime + ' minutes',
+    };
     try {
-      const url = 'http://localhost:3000/recipes';
-      setIsPending(true);
-      const body = {
-        title,
-        ingredients,
-        method,
-        cookingTime,
-        id: Math.floor(Math.round(Math.random(100))),
-      };
-      const res = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      });
-      const data = await res.json();
+      await projectFirestore.collection('recipes').add(body);
       setIsPending(false);
-      if (data) navigate('/');
-      else throw new Error('Could not save');
+      navigate('/');
     } catch (err) {
-      console.log(err.message);
       setIsPending(false);
+      console.log(err);
     }
   }
 
   async function onSubmit(e) {
     e.preventDefault();
+    ingredientRef.current.focus();
     await postIngredient();
   }
   function addIngredient(ingredient) {
@@ -51,14 +45,14 @@ export default function Create() {
       setIngredients(prev => [...prev, ingredient]);
       setIngredient('');
     }
-    ingredientRef.current.focus();
+    //
   }
   function deleteIngredient(ingredient) {
     setIngredients(prevs => prevs.filter(prev => prev !== ingredient));
   }
 
   return (
-    <div className='create'>
+    <div className={`create ${mode}`}>
       <h2 className='page-title'>Add a new Recipe</h2>
       <form onSubmit={onSubmit}>
         <label>
@@ -73,12 +67,22 @@ export default function Create() {
         <label>
           <span>Recipe Ingredients:</span>
           <input
+            placeholder='Press Enter'
             type='text'
             onChange={e => setIngredient(e.target.value)}
+            onKeyPress={e => {
+              if (e.code === 'Enter') {
+                addIngredient(e.target.value);
+              }
+            }}
             value={ingredient}
             ref={ingredientRef}
           />
-          <div>
+          <div
+            style={{
+              marginBottom: 20,
+            }}
+          >
             {ingredients.map(ing => (
               <span
                 className='ingredient'
@@ -90,9 +94,16 @@ export default function Create() {
             ))}
           </div>
 
-          <button className='btn' onClick={() => addIngredient(ingredient)}>
+          {/* <button
+            className='btn'
+            onKeyPress={e => console.log(`Code==`, e.code)}
+            onClick={e => {
+              console.log(e);
+              addIngredient(ingredient);
+            }}
+          >
             Add
-          </button>
+          </button> */}
         </label>
         <label>
           <span>Recipe method:</span>

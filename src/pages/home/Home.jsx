@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Recipes from '../../components/recipes/Recipes';
+import { useTheme } from '../../contexts/ThemeContext';
 import { projectFirestore } from '../../firebase/config';
 import './Home.css';
 
@@ -7,6 +8,8 @@ export default function Home() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const { mode } = useTheme();
 
   useEffect(() => {
     setLoading(true);
@@ -32,7 +35,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='home'>
+    <div className={`home ${mode}`}>
       {error && <p className='error'>{error}</p>}
       {loading && <p className='loading'>Loading...</p>}
       <Recipes recipes={data} />

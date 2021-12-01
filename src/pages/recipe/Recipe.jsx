@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import { useFetch } from '../../hooks';
+import { projectFirestore } from '../../firebase/config';
 import './Recipe.css';
 
 export default function Recipe() {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const { mode } = useTheme();
   const { id } = useParams();
-  const url = `http://localhost:3000/recipes/${id}`;
 
-  const { loading, error, data } = useFetch(url);
+  useEffect(() => {
+    setLoading(true);
+    projectFirestore
+      .collection('recipes')
+      .doc(id)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          setData({ ...doc.data() });
+          setLoading(false);
+        } else {
+          setLoading(false);
+          setError('Not found');
+        }
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id]);
+
   return (
     <div className={`recipe ${mode}`}>
       {loading && <p className='loading'>Loading...</p>}
