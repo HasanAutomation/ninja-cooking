@@ -12,29 +12,59 @@ export default function Recipe() {
   const { mode } = useTheme();
   const { id } = useParams();
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   projectFirestore
+  //     .collection('recipes')
+  //     .doc(id)
+  //     .get()
+  //     .then(doc => {
+  //       if (doc.exists) {
+  //         setData({ ...doc.data() });
+  //         setLoading(false);
+  //       } else {
+  //         setLoading(false);
+  //         setError('Not found');
+  //       }
+  //     })
+  //     .catch(err => {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     });
+  // }, [id]);
+
   useEffect(() => {
     setLoading(true);
-    projectFirestore
+    const unsub = projectFirestore
       .collection('recipes')
       .doc(id)
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          setData({ ...doc.data() });
+      .onSnapshot(
+        doc => {
+          if (doc.exists) {
+            setData({ ...doc.data() });
+            setLoading(false);
+          } else {
+            setLoading(false);
+            setError('No Data found');
+          }
+        },
+        err => {
+          setError(err.message);
           setLoading(false);
-        } else {
-          setLoading(false);
-          setError('Not found');
         }
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      });
+      );
+    return () => unsub();
   }, [id]);
+
+  function handleDelete() {
+    projectFirestore.collection('recipes').doc(id).update({
+      title: 'Fucking',
+    });
+  }
 
   return (
     <div className={`recipe ${mode}`}>
+      <button onClick={handleDelete}>Update</button>
       {loading && <p className='loading'>Loading...</p>}
       {error && <p className='error'>{error}</p>}
       {data && (
